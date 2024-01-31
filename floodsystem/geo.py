@@ -38,3 +38,15 @@ def stations_by_river(stations):
         if station.river is not None:
             river_stations[station.river].append(station.name)
     return river_stations
+
+
+def rivers_by_station_number(stations, N):
+    river_stations = stations_by_river(stations)
+    river_num_stations = [(river, len(stations)) for river, stations in river_stations.items()]
+    river_num_stations = sorted_by_key(river_num_stations, 1, reverse=True)
+    first_N = river_num_stations[:N]
+    #include rivers with same number of stations as the last river in the top N
+    for river, num_stations in river_num_stations[N:]:
+        if num_stations == first_N[-1][1]:
+            first_N.append((river, num_stations))
+    return first_N
