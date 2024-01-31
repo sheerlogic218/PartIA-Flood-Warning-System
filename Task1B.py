@@ -12,14 +12,14 @@ def main():
     stations_distance = stations_by_distance(stations, p)
     print("The 10 closest stations to Cambridge are: \n")
     for station in stations_distance[:10]:
-        print("Station name: ", station[0].name,
+        print("Station name: ", station[0].name+
                ", Town: ", station[0].town,
                 "\nDistance: ", station[1]
                 ,"\n")
     
     print("\n\nThe 10 furthest stations to Cambridge are: \n")
     for station in stations_distance[-10:]:
-        print("Station name: ", station[0].name,
+        print("Station name: ", station[0].name+
                ", Town: ", station[0].town,
                 "\nDistance: ", station[1]
                 ,"\n")

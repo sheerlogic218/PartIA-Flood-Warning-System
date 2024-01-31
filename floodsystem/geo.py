@@ -22,8 +22,9 @@ def haversin(coordA, coordB):
 
 
 def stations_by_distance(stations, p):
-    stations_distance = []
-    for station in stations:
-        stations_distance.append((station, haversin(station.coord, p)))
-    return sorted_by_key(stations_distance,1, reverse=False)
+    return sorted_by_key( [ (station , haversin(station.coord,p)) for station in stations ], 1)
 
+
+
+def stations_within_radius(stations, centre, r):
+    return [station for station in stations if haversin(station.coord, centre) <= r]
