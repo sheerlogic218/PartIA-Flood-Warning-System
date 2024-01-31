@@ -14,7 +14,7 @@ def haversin(coordA, coordB):
     lat2 = math.radians(coordB[0])
     lon1 = math.radians(coordA[1])
     lon2 = math.radians(coordB[1])
-    r = 6371000  # metres
+    r = 6371  # kilometres
     #haversine 
     distance = 2*r*math.sqrt( math.sin( (lat2-lat1)/2 )**2 + math.cos(lat1)*math.cos(lat2)*math.sin( (lon2-lon1)/2 )**2 )
     return distance
