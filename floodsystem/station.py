@@ -41,6 +41,7 @@ class MonitoringStation:
         return d
 
     def typical_range_consistent(self):
+        '''Returns True only if the typical range is consistent, otherwise returns False'''
         try:
             return self.typical_range[0] < self.typical_range[1]
         except TypeError:
@@ -49,4 +50,5 @@ class MonitoringStation:
 
 
 def inconsistent_typical_range_stations(stations):
+    '''Returns list of stations with inconsistent typical range'''
     return [station for station in stations if not station.typical_range_consistent()]
