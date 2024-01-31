@@ -20,11 +20,21 @@ def haversin(coordA, coordB):
     return distance
 
 
-
 def stations_by_distance(stations, p):
     return sorted_by_key( [ (station , haversin(station.coord,p)) for station in stations ], 1)
 
-
-
 def stations_within_radius(stations, centre, r):
     return [station for station in stations if haversin(station.coord, centre) <= r]
+
+
+def rivers_with_station(stations):
+    rivers = [station.river for station in stations if station.river is not None]
+    return sorted(set(rivers))
+
+def stations_by_river(stations):
+    rivers = rivers_with_station(stations)
+    river_stations = {river: [] for river in rivers}
+    for station in stations:
+        if station.river is not None:
+            river_stations[station.river].append(station.name)
+    return river_stations
