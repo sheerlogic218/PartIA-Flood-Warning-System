@@ -1,5 +1,6 @@
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 def plot_water_levels(station, dates, levels):
     #plot the water levels for a given station
