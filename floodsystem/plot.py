@@ -1,18 +1,17 @@
 
 import matplotlib.pyplot as plt
-import numpy as np
-from datetime import datetime
-from datafetcher import fetch_measure_levels
-from stationdata import build_station_list
-import datetime as dt
 
 def plot_water_levels(station, dates, levels):
     #plot the water levels for a given station
+    #also show typical high and low levels
     name = station.name
+    typical_range = station.typical_range
     plt.plot(dates, levels)
-    plt.xlabel('Date')
-    plt.ylabel('Water Level (m)')
-    plt.title('Water Level at ' + name)
+    plt.xlabel('date')
+    plt.ylabel('water level')
+    plt.title(name)
+    plt.xticks(rotation=45)
+    plt.axhline(typical_range[0], color='r', linestyle='--')
+    plt.axhline(typical_range[1], color='r', linestyle='--')
     plt.show()
-    return
 
