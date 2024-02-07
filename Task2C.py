@@ -8,10 +8,11 @@ def main():
     # Update water levels
     update_water_levels(stations)
     # Find and print the 5 stations with the highest relative water levels
-    N = 5
-    print("5 stations with the highest relative water levels:")
-    print(stations_highest_rel_level(stations, N))
-
+    N = 10
+    print("10 stations with the highest relative water levels:")
+    stations = stations_highest_rel_level(stations, N)
+    for station in stations:
+        print(station[0].name, station[1])
 
 if __name__ == "__main__":
     main()
