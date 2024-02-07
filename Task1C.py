@@ -11,12 +11,11 @@ def main():
 
     #sort by name in alphabetical order
     valid_stations = sorted(valid_stations, key = lambda station: station.name)
-    valid_names = [station.name for station in valid_stations]
 
     print("\nStations within 10km of Cambridge: ")
     for station in valid_stations:
         print(station.name)
-    #print(valid_names)
+
     
 
 if __name__ == "__main__":
