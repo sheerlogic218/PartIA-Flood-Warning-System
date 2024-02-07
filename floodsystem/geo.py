@@ -74,5 +74,3 @@ def map_stations(stations):
     fig.show()
     return
 
-
-#a
