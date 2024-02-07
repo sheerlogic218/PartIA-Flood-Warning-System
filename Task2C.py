@@ -3,9 +3,7 @@ from floodsystem.stationdata import build_station_list, update_water_levels
 
 
 def main():
-    # Build list of stations
     stations = build_station_list()
-    # Update water levels
     update_water_levels(stations)
     N = 10
     print("10 stations with the highest relative water levels:")
