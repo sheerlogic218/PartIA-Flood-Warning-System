@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_water_levels(station, dates, levels):
+def plot_water_levels(station, dates, levels, show = True):
     #plot the water levels for a given station
     #also show typical high and low levels
     name = station.name
@@ -14,7 +14,9 @@ def plot_water_levels(station, dates, levels):
     plt.xticks(rotation=45)
     plt.axhline(typical_range[0], color='r', linestyle='--')
     plt.axhline(typical_range[1], color='r', linestyle='--')
-    plt.show()
+    if show:
+        plt.show()
+
 
 def plot_water_levels_with_fit(station, dates, levels, p):
     """Plot water levels and polynomial of best fit."""
