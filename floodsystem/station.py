@@ -47,6 +47,13 @@ class MonitoringStation:
         except TypeError:
             return False
         
+    def relative_water_level(self):
+        '''Returns the water level of the station relative to its typical range, returning None if invalid data is present.'''
+        try:
+            return (self.latest_level - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])
+        except TypeError:
+            return None
+        
 
 
 def inconsistent_typical_range_stations(stations):
