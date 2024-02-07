@@ -7,7 +7,6 @@ def main():
     stations = build_station_list()
     # Update water levels
     update_water_levels(stations)
-    # Find and print the 5 stations with the highest relative water levels
     N = 10
     print("10 stations with the highest relative water levels:")
     stations = stations_highest_rel_level(stations, N)
