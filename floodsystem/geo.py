@@ -57,7 +57,7 @@ def rivers_by_station_number(stations, N):
             first_N.append((river, num_stations))
     return first_N
 
-def map_stations(stations):
+def map_stations(stations, show = False):
     '''creates a 2d map of the stations'''
     #background should be a map of the uk
     import plotly as py
@@ -71,6 +71,7 @@ def map_stations(stations):
     df['lon'] = [station.coord[1] for station in stations]
     #create a scattergeo plot
     fig = px.scatter_geo(df, lat='lat', lon='lon', hover_name='name')
-    fig.show()
+    if show:
+        fig.show()
     return
 
