@@ -1,6 +1,5 @@
 from floodsystem.flood import stations_level_over_threshold
 import floodsystem.station
-from floodsystem.stationdata import update_water_levels
 
 
 sample_stations = [floodsystem.station.MonitoringStation("1", "None", "A", (1, 1), [0,2], "river", None),
@@ -16,4 +15,10 @@ def test_stations_level_over_threshold():
     assert stations_level_over_threshold(sample_stations, tol = 0.5)[0][0] == sample_stations[0]
 
 
+def test_stations_highest_rel_level():
+    test = floodsystem.flood.stations_highest_rel_level(sample_stations, 2)
+    assert test[0][0] == sample_stations[0]
+    assert test[1][0] == sample_stations[1]
 
+
+test_stations_highest_rel_level()
