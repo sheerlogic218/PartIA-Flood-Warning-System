@@ -1,6 +1,8 @@
-
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import numpy as np
+import datetime as dt
+import pandas as pd
 
 def plot_water_levels(station, dates, levels, show = True):
     #plot the water levels for a given station
@@ -20,10 +22,8 @@ def plot_water_levels(station, dates, levels, show = True):
 
 def plot_water_levels_with_fit(station, dates, levels, p):
     """Plot water levels and polynomial of best fit."""
-    # Convert dates to numbers
-    dates = plt.dates.date2num(dates)
-
-    # Fit polynomial
+    print(dates[0])
+    # Create polynomial of best fit
     poly = np.polyfit(dates - dates[0], levels, p)
 
     # Create plot
