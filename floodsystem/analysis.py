@@ -6,4 +6,4 @@ def polyfit(dates, levels, p):
     dates = mpdates.date2num(dates)
     p_coeff = np.polyfit(dates - dates[0], levels, p)
     poly = np.poly1d(p_coeff)
-    return poly
+    return poly, dates
