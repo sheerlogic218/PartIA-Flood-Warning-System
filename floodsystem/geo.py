@@ -7,6 +7,8 @@ geographical data.
 """
 import math
 from .utils import sorted_by_key
+import pandas as pd
+import plotly.express as px
 
 def haversin(coordA, coordB):
     '''Returns the arc length between two points on the earth's surface for the great circle joining the two points.'''
@@ -59,19 +61,26 @@ def rivers_by_station_number(stations, N):
 
 def map_stations(stations, show = False):
     '''creates a 2d map of the stations'''
-    #background should be a map of the uk
-    import plotly as py
-    import plotly.graph_objs as go
-    import plotly.express as px
-    import pandas as pd
-    #create a dataframe of the stations
     df = pd.DataFrame()
     df['name'] = [station.name for station in stations]
     df['lat'] = [station.coord[0] for station in stations]
     df['lon'] = [station.coord[1] for station in stations]
-    #create a scattergeo plot
     fig = px.scatter_geo(df, lat='lat', lon='lon', hover_name='name')
     if show:
         fig.show()
     return
 
+def data_frame(stations,type):
+    df = pd.DataFrame()
+    df['name'] = [station.name for station in stations]
+    df['lat'] = [station.coord[0] for station in stations]
+    df['lon'] = [station.coord[1] for station in stations]
+    df['type'] = [type for station in stations]
+    return df
+
+def map_station_type(below, normal, high, no_data):
+    #plot each type of station with a different colour
+    df = pd.concat([data_frame(below, 'below'), data_frame(normal, 'normal'), data_frame(high, 'high'), data_frame(no_data, 'no data')])
+    fig = px.scatter_geo(df, lat='lat', lon='lon', color='type', hover_name='name')
+    fig.show()
+    return

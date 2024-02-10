@@ -22,7 +22,7 @@ def plot_water_levels(station, dates, levels, show = True):
         plt.show()
 
 
-def plot_water_level_with_fit(station, dates, levels, p):
+def plot_water_level_with_fit(station, dates, levels, p, show = True):
 
     plot, dates = analysis.polyfit(dates, levels, p)
     date_shift = dates[0]
@@ -39,5 +39,6 @@ def plot_water_level_with_fit(station, dates, levels, p):
     plt.axhline(station.typical_range[0], color='r', linestyle='--', label = "Typical Range")
     plt.axhline(station.typical_range[1], color='r', linestyle='--')
     plt.legend()
-    plt.show()
+    if show:
+        plt.show()
 

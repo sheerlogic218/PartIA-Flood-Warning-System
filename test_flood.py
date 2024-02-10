@@ -20,5 +20,3 @@ def test_stations_highest_rel_level():
     assert test[0][0] == sample_stations[0]
     assert test[1][0] == sample_stations[1]
 
-
-test_stations_highest_rel_level()

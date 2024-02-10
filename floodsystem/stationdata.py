@@ -26,6 +26,7 @@ def build_station_list(use_cache=True):
     # Build list of MonitoringStation objects
     stations = []
     for e in data["items"]:
+        
         # Extract town string (not always available)
         town = None
         if 'town' in e:
@@ -87,3 +88,33 @@ def update_water_levels(stations):
         if station.measure_id in measure_id_to_value:
             if isinstance(measure_id_to_value[station.measure_id], float):
                 station.latest_level = measure_id_to_value[station.measure_id]
+
+
+def potentially_at_flood_risk(stations):
+    # create a list of stations that are at risk of flooding
+    potentially_at_risk = []
+    for station in stations:
+        if station.typical_range != None and station.latest_level != None:
+            if station.latest_level > station.typical_range[1]:
+                potentially_at_risk.append(station)
+    return potentially_at_risk
+
+def station_categorization(stations):
+    #categorize each station into 4 categories
+    below = []
+    normal = []
+    high = []
+    no_data = []
+    for station in stations:
+        if station.typical_range != None and station.latest_level != None:
+            if station.latest_level < station.typical_range[0]:
+                below.append(station)
+            elif station.latest_level > station.typical_range[1]:
+                high.append(station)
+            else:
+                normal.append(station)
+        else:
+            no_data.append(station)
+    return below, normal, high, no_data
+
+
