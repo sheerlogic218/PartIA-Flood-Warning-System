@@ -80,7 +80,11 @@ def data_frame(stations,type):
 
 def map_station_type(below, normal, high, no_data):
     #plot each type of station with a different colour
-    df = pd.concat([data_frame(below, 'below'), data_frame(normal, 'normal'), data_frame(high, 'high'), data_frame(no_data, 'no data')])
+    df = pd.concat([data_frame(below, 'below'),
+                    data_frame(normal, 'normal'),
+                    data_frame(high, 'high'),
+                    data_frame(no_data, 'no data')
+                    ])
     fig = px.scatter_geo(df, lat='lat', lon='lon', color='type', hover_name='name')
     fig.show()
     return

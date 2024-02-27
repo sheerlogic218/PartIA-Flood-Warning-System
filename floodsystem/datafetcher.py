@@ -118,7 +118,7 @@ def fetch_measure_levels(measure_id, dt):
     dt. Return list of dates and a list of values.
 
     """
-
+    
     # Current time (UTC)
     now = datetime.datetime.utcnow()
 
@@ -136,11 +136,15 @@ def fetch_measure_levels(measure_id, dt):
     # Extract dates and levels
     dates, levels = [], []
     for measure in data['items']:
-        # Convert date-time string to a datetime object
-        d = dateutil.parser.parse(measure['dateTime'])
-
-        # Append data
-        dates.append(d)
-        levels.append(measure['value'])
+        try:
+            # Convert date-time string to a datetime object
+            d = dateutil.parser.parse(measure['dateTime'])
+            
+            # Append data
+            dates.append(d)
+            levels.append(measure['value'])
+        except Exception:
+            print("Error in fetch_measure_levels" + str(measure))
+            
 
     return dates, levels
