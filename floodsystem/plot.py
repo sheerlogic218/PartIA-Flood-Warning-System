@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.dates as mpdates
 import numpy as np
 import floodsystem.analysis as analysis
 
@@ -23,17 +24,17 @@ def plot_water_levels(station, dates, levels, show = True):
 
 
 def plot_water_level_with_fit(station, dates, levels, p, show = True):
-
-    plot, dates = analysis.polyfit(dates, levels, p)
-    date_shift = dates[0]
+    year = dates[0].year
     name = station.name
+    poly, date_shift = analysis.polyfit(dates, levels, p)
+    num_dates = np.array(mpdates.date2num(dates))
 
     plt.plot(dates, levels, label = "Actual Data")
-    plt.plot(dates, plot(dates - date_shift), label = "Polynomial Fit")
+    plt.plot(dates, poly(num_dates - date_shift), label = "Polynomial Fit")
 
     plt.xlabel('date')
     plt.ylabel('water level')
-    plt.title(name)
+    plt.title(name + " Water Levels" + " in " + str(year))
     plt.xticks(rotation=45)
 
     plt.axhline(station.typical_range[0], color='r', linestyle='--', label = "Typical Range")
