@@ -12,6 +12,3 @@ def polyfit(dates, levels, p):
 def current_gradient(poly,latest_date):
     return poly.deriv()(latest_date)
 
-
-def average_gradient(poly, days):
-    return (poly(poly.domain[1]) - poly(poly.domain[0]))/days

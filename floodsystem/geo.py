@@ -68,7 +68,7 @@ def map_stations(stations, show = False):
     fig = px.scatter_geo(df, lat='lat', lon='lon', hover_name='name')
     if show:
         fig.show()
-    return
+    return True
 
 def data_frame(stations,type):
     df = pd.DataFrame()
@@ -78,7 +78,7 @@ def data_frame(stations,type):
     df['type'] = [type for station in stations]
     return df
 
-def map_station_type(below, normal, high, no_data):
+def map_station_type(below, normal, high, no_data, show = True):
     #plot each type of station with a different colour
     df = pd.concat([data_frame(below, 'below'),
                     data_frame(normal, 'normal'),
@@ -86,5 +86,6 @@ def map_station_type(below, normal, high, no_data):
                     data_frame(no_data, 'no data')
                     ])
     fig = px.scatter_geo(df, lat='lat', lon='lon', color='type', hover_name='name')
-    fig.show()
-    return
+    if show:
+        fig.show()
+    return True

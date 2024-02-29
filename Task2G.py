@@ -9,7 +9,6 @@ import datetime as dt
 
 
 def main():
-
     stations = build_station_list()
     update_water_levels(stations)
     stations.sort(key = lambda x: x.relative_water_level() if x.relative_water_level() != None else 0 , reverse = True)
@@ -32,7 +31,7 @@ def main():
             #indicates progress
             if len(station_gradient) % 10 == 0:
                 print(len(station_gradient))
-        #sort the stations by gradient
+        #sorts the stations by gradient
         sorted_stations = sorted(station_gradient, key = lambda x: x[1], reverse = True)
         #cache the data
         with open("cache/station_risk.json", "w") as f:
@@ -60,7 +59,6 @@ def main():
     print("\nnow showing the categorized stations")
     below, normal, higher, no_data = station_categorization(stations)
     map_station_type(below, normal, higher, no_data)
-
 
 
 if __name__ == "__main__":

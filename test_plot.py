@@ -19,4 +19,14 @@ def test_plot_water_levels():
         assert False
     assert True
 
-
+def test_plot_water_level_with_fit():
+    #check that the code runs without error
+    stations = build_station_list()
+    station = stations[0]
+    dates = [1, 2, 3, 4, 5]
+    levels = [1, 2, 3, 4, 5]
+    try:
+        plot_water_levels(station, dates, levels, show = False)
+    except:
+        assert False
+    assert True

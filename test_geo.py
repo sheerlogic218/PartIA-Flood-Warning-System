@@ -1,10 +1,13 @@
 import floodsystem.geo
 import floodsystem.station
+import floodsystem.stationdata
 import math
+import pandas as pd
 
-sample_stations = [floodsystem.station.MonitoringStation("1", "None", "A", (1, 1), 2, "river", None),
-                   floodsystem.station.MonitoringStation("2", "None", "B", (3, 3), 2, "river", None),
-                   floodsystem.station.MonitoringStation("3", "None", "C", (2, 2), 2, "river2", None)
+
+sample_stations = [floodsystem.station.MonitoringStation("1", "None", "A", (1, 1), (1,2), "river", None),
+                   floodsystem.station.MonitoringStation("2", "None", "B", (3, 3), (1,3), "river", None),
+                   floodsystem.station.MonitoringStation("3", "None", "C", (2, 2), (0,2), "river2", None)
                    ]
 R = 6371
 
@@ -43,4 +46,18 @@ def test_rivers_by_station_number():
     N = 2
     sample_rivers_by_station_number = floodsystem.geo.rivers_by_station_number(sample_stations, N)
     assert sample_rivers_by_station_number == [("river", 2), ("river2", 1)]
+
+
+def test_map_stations():
+    assert floodsystem.geo.map_stations(sample_stations, show = False) == True
+
+def test_data_frame():
+    assert type(floodsystem.geo.data_frame(sample_stations, "name")) == pd.DataFrame
+
+def test_map_station_type():
+    sample_stations[0].latest_level = 0.5
+    sample_stations[1].latest_level = 2
+    sample_stations[2].latest_level = 5
+    below, normal, above, no_data = floodsystem.stationdata.station_categorization(sample_stations)
+    assert floodsystem.geo.map_station_type(below, normal, above, no_data, show = False) == True
 
